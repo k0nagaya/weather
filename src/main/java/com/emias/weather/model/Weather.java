@@ -4,31 +4,28 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 public class Weather {
     @Id
     @GeneratedValue
-    // TODO без id?
     private Long id;
 
     @Column(nullable = false)
     private String city;
 
     @Column(nullable = false)
-    private float celcius;
+    private double temp;
 
-    // fixme нужен ли часовой пояс? или хранить только в базе?
     @Column(nullable = false)
-    private Timestamp date;
+    private LocalDate date;
 
     public Weather() {}
 
-    public Weather(Long id, String city, float celcius, Timestamp date) {
-        this.id = id;
+    public Weather(String city, double temp, LocalDate date) {
         this.city = city;
-        this.celcius = celcius;
+        this.temp = temp;
         this.date = date;
     }
 
@@ -40,11 +37,11 @@ public class Weather {
         return city;
     }
 
-    public float getCelcius() {
-        return celcius;
+    public double getTemp() {
+        return temp;
     }
 
-    public Timestamp getDate() {
+    public LocalDate getDate() {
         return date;
     }
 }
